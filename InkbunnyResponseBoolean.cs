@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace InkbunnyLib {
 	[JsonConverter(typeof(InkbunnyResponseBooleanConverter))]
 	public struct InkbunnyResponseBoolean {
-		private readonly bool value;
+		public readonly bool value;
 
         public InkbunnyResponseBoolean(bool v) {
             value = v;
