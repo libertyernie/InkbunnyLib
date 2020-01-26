@@ -22,7 +22,7 @@ namespace InkbunnyLib {
             HttpWebRequest req = WebRequest.CreateHttp("https://inkbunny.net/api_login.php");
             req.Method = "POST";
             req.ContentType = "application/x-www-form-urlencoded";
-            req.UserAgent = "WeasylSync/1.2";
+            req.UserAgent = "InkbunnyLib/1.2";
             using (Stream stream = await req.GetRequestStreamAsync()) {
                 using (StreamWriter sw = new StreamWriter(stream)) {
                     await sw.WriteAsync($"username={WebUtility.UrlEncode(username)}&password={WebUtility.UrlEncode(password)}");
@@ -42,7 +42,7 @@ namespace InkbunnyLib {
         }
 
         public async Task<long> UploadAsync(IEnumerable<byte[]> files = null) {
-            string boundary = "----WeasylSync" + DateTime.Now.Ticks.ToString("x");
+            string boundary = "----InkbunnyLib" + DateTime.Now.Ticks.ToString("x");
 
             var request = (HttpWebRequest)WebRequest.Create("https://inkbunny.net/api_upload.php");
             request.ContentType = "multipart/form-data; boundary=" + boundary;
@@ -176,7 +176,7 @@ namespace InkbunnyLib {
 		}
 
 		private async Task<string> PostMultipartAsync(string url, Dictionary<string, string> parameters) {
-            string boundary = "----WeasylSync" + DateTime.Now.Ticks.ToString("x");
+            string boundary = "----InkbunnyLib" + DateTime.Now.Ticks.ToString("x");
 
             var request = WebRequest.Create(url);
             request.ContentType = "multipart/form-data; boundary=" + boundary;
